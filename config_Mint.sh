@@ -27,6 +27,8 @@ logger -t Cinn-dconf "Cinnamon dconf changes done"
 echo "Cinnamon dconf changes done. Press any key to continue..."
 read -n 1 -s
 
+# Create a folder to save documentation about computer.
+mkdir ~/Desktop/$(hostname)
 
 # Make a backup copy of Software Sources.
 sudo cp /etc/apt/sources.list.d/official-package-repositories.list /etc/apt/sources.list.d/official-package-repositories.list.bak
