@@ -213,7 +213,7 @@ echo "Replacement for Calibri with Carlito has been added to the LibreOffice rep
 
 
 # Install packages in Mint's repository (GUI window is titled Software Manager).
-sudo apt install -y fswebcam hw-probe
+sudo apt install -y fswebcam hw-probe hardinfo
 
 # Download Zoom. Install Zoom. https://linuxize.com/post/wget-command-examples/
 wget -P /home/user/Downloads/ https://zoom.us/client/6.5.7.3298/zoom_amd64.deb
