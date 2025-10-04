@@ -395,6 +395,20 @@ logger -t log-ttf "ttf-mscorefonts-installer done."
 echo "ttf-mscorefonts-installer done. Press any key to continue..."
 read -n 1 -s
 
+function Sidebar_Bookmarks {
+# Define the path to the bookmarks file
+BOOKMARKS_FILE="$HOME/.config/gtk-3.0/bookmarks"
+
+# Create a backup of the original bookmarks file
+cp "$BOOKMARKS_FILE" "$BOOKMARKS_FILE.bak"
+
+# Delete lines containing Music, Videos, and Pictures
+sed -i '/Music/d; /Videos/d; /Pictures/d' "$BOOKMARKS_FILE"
+
+echo "Sidebar Bookmarks for Music, Videos, and Pictures have been deleted."
+}
+
+
 # Disable auto-arrange desktop icons. Requires restart.
 # TODO: Figure out how to handle restart; may need to move to end of script. 
 sed -i 's/nemo-icon-view-auto-layout=true/nemo-icon-view-auto-layout=false/g' ./.config/nemo/desktop-metadata
