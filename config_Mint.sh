@@ -38,10 +38,27 @@ sudo sed -i 's,http://packages.linuxmint.com,https://mirror.fcix.net/linuxmint-p
 
 sudo sed -i 's,http://archive.ubuntu.com/ubuntu,http://mirror.math.ucdavis.edu/ubuntu,g' /etc/apt/sources.list.d/official-package-repositories.list
 
+function wifi_file {
+openssl enc -aes-256-cbc -salt -pbkdf2 -in wifi_config.txt -out wifi_config.enc -pass pass:MyPassword
+ENCRYPTED_FILE="wifi_config.enc"
+DECRYPTED_OUTPUT=$(openssl enc -aes-256-cbc -d -salt -pbkdf2 -in "$ENCRYPTED_FILE" -pass pass:MyPassword)
+if [ $? -ne 0 ]; then
+    echo "Failed to decrypt file."
+    exit 1
+fi                    
 
-function 2wifi {
+SSID=$(echo "$DECRYPTED_OUTPUT" | grep "SSID:" | cut -d' ' -f2)
+PASSWORD=$(echo "$DECRYPTED_OUTPUT" | grep "PASSWORD:" | cut -d' ' -f2)
+
 # Connect to 2.4 GHz Guest wireless. https://thelinuxcode.com/3-ways-to-connect-to-wifi-from-the-command-line-on-debian/
-nmcli device wifi connect WIFI-guest password "WIFI-password"
+nmcli device wifi connect "$SSID" password "$PASSWORD"
+
+if [ $? -eq 0 ]; then
+    echo "Successfully connected to $SSID."
+else
+    echo "Failed to connect to $SSID."
+    exit 1
+fi
 
 # Make sure MAC address is on WIFI-guest Allow List.
 
@@ -63,9 +80,9 @@ esac
 done
 }
 
-2wifi
-logger -t log-wifi "Wifi 2GHz done"
-echo "Function 2wifi done. Press any key to continue..."
+wifi_file
+logger -t log-wifi_file "Wifi 2GHz done"
+echo "Function wifi_file done. Press any key to continue..."
 read -n 1 -s
 
 function ping_internet {
