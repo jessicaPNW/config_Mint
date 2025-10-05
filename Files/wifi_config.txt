@@ -1,4 +1,4 @@
 SSID: Your5GHzGuestSSID
 SSID2: Your2GHzGuestSSID
-Password: Your5GHzGuestPassword
-Password2: Your2GHzGuestPassword
+PASSWORD: Your5GHzGuestPassword
+PASSWORD2: Your2GHzGuestPassword
