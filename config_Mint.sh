@@ -1,5 +1,5 @@
 #!/usr/bin/env bash 
-# TRYING: bash ~/Desktop/onboard_Mint.sh 2>&1 | tee ~/Desktop/onboard_Mint_log.txt
+# TRYING: bash ~/Desktop/onboard_Mint.sh 2> | tee ~/Desktop/onboard_Mint_log.txt
 
 # Should I run onboard_Mint.sh using sudo? Currently the script prompts for password part way in. Would be nice to kick off script and walk away.
 
