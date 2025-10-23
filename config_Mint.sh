@@ -24,8 +24,6 @@ dconf write /org/cinnamon/settings-daemon/plugins/power/lid-close-battery-action
 dconf write /org/x/editor/preferences/editor/editor-font "'monospace 21'"
 dconf write /org/x/editor/preferences/editor/use-default-font "false"
 logger -t Cinn-dconf "Cinnamon dconf changes done"
-echo "Cinnamon dconf changes done. Press any key to continue..."
-read -n 1 -s
 
 # Create a folder to save documentation about computer.
 mkdir ~/Desktop/$(hostname)
@@ -82,8 +80,6 @@ done
 
 wifi_file
 logger -t log-wifi_file "Wifi 2GHz done"
-echo "Function wifi_file done. Press any key to continue..."
-read -n 1 -s
 
 function ping_internet {
 #  Was ping successful? 
@@ -110,8 +106,6 @@ done
 
 ping_internet
 logger -t log-ping "Ping internet done"
-echo "Function ping_internet done. Press any key to continue..."
-read -n 1 -s
 
 # Before installing or updating any packages, it is important to update the package index. The package index contains information about the available packages in the repositories. https://linuxvox.com/blog/linux-mint-package-manager/. https://linuxize.com/post/how-to-use-apt-command/. 
 # I had to duplicate the apt commands a few times. Mint seems to want mint-upgrade-info and mintupdate, updated first, and then can proceed normally.
@@ -120,31 +114,19 @@ read -n 1 -s
 sudo apt update
 # TODO: Not prompt for password. Maybe run script as sudo?
 logger -t log-apt-update "apt update done."
-echo "sudo apt update done. Press any key to continue..."
-read -n 1 -s
 
 sudo dpkg --configure -a
 logger -t log-dpkg-config "dpkg --configure -a done."
-echo "sudo dpkg --configure -a done. Press any key to continue..."
-read -n 1 -s
 
 sudo apt install mint-upgrade-info
 sudo apt install mintupdate
 logger -t log-mint-upgrade "mint-upgrade done"
-echo "sudo apt install mint-upgrade-info and mintupdate done. Press any key to continue..."
-read -n 1 -s
-
 
 # Before installing or updating any packages, it is important to update the package index. The package index contains information about the available packages in the repositories. https://linuxvox.com/blog/linux-mint-package-manager/. https://linuxize.com/post/how-to-use-apt-command/
 sudo apt update
-echo "sudo apt update done. Press any key to continue..."
-read -n 1 -s
-
 
 # Update installed packages.
 sudo apt upgrade
-echo "sudo apt upgrade done. Press any key to continue..."
-read -n 1 -s
 
 sudo apt install fonts-crosextra-carlito fonts-crosextra-caladea
 
@@ -236,8 +218,6 @@ sudo apt install -y fswebcam hw-probe hardinfo
 wget -P /home/user/Downloads/ https://zoom.us/client/6.5.7.3298/zoom_amd64.deb
 sudo apt install -y /home/user/Downloads/zoom_amd64.deb
 logger -t log-zoom-app "Zoom done."
-echo "Zoom done. Press any key to continue..."
-read -n 1 -s
 
 # Download and Import Google’s Signed Key.https://linuxiac.com/how-to-install-google-chrome-on-linux-mint/
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub > linux_signing_key.pub
@@ -251,14 +231,10 @@ sudo apt update
 
 sudo apt install google-chrome-stable
 logger -t log-chrome-app "Chrome done."
-echo "Chrome done. Press any key to continue..."
-read -n 1 -s
 
 # Update installed packages.
 sudo apt update
 sudo apt upgrade
-echo "sudo apt upgrade done. Press any key to continue..."
-read -n 1 -s
 
 # Create desktop shortcuts for Firefox, Chrome, Zoom, and LibreOffice.
 function desktop_icons {
@@ -358,8 +334,6 @@ done
 
 test_mic
 logger -t log-mic "Microphone test done."
-echo "Function test_mic done. Press any key to continue..."
-read -n 1 -s
 
 # Collect hardware for documentation.
 sudo inxi -FZxd > /media/user/SilverPur_1/$(hostname)_inxi.txt
@@ -378,7 +352,6 @@ FILENAME="$(hostname)_hwprobe_url.txt"
 echo "$HWPROBE_URL" > "$FILENAME"
 echo "hw-probe URL saved to $FILENAME"
 
-
 # TESTING: Change Terminal font size to Monospace 20 pt. 
 # Used dconf dump to determine font is saved in a file with the filname starting with a colon and followed by a random GUID, e.g. /org/gnome/terminal/legacy/profiles:/:[GUID?]. I only know how to interact with static file names, not variable. 
 # Hooray, it's called a GNOME terminal profile https://www.baeldung.com/linux/gnome-terminal-profile-export. 
@@ -392,8 +365,6 @@ sudo apt-get purge ttf-mscorefonts-installer
 sudo dpkg-reconfigure fontconfig
 
 logger -t log-ttf "ttf-mscorefonts-installer done."
-echo "ttf-mscorefonts-installer done. Press any key to continue..."
-read -n 1 -s
 
 function Sidebar_Bookmarks {
 # Define the path to the bookmarks file
