@@ -130,12 +130,14 @@ sudo apt upgrade
 
 sudo apt install fonts-crosextra-carlito fonts-crosextra-caladea
 
-# Copy Aptos font folder from USB to computer's Downloads folder.
+# Download Aptos font folder.
 # Info https://easylinuxtipsproject.blogspot.com/p/libre-office.html#ID6.3
-cp /media/user/SilverPur_1/Aptos ~/Downloads -r
+curl -L "https://download.microsoft.com/download/8/6/0/860a94fa-7feb-44ef-ac79-c072d9113d69/Microsoft%20Aptos%20Fonts.zip" --output ~/Downloads/Aptos.zip
+sudo unzip Aptos -d ~/Downloads/Aptos.zip 
 
 # Create folder for Aptos fonts, move fonts over, tell system about new fonts.
 sudo mkdir -p -v /usr/local/share/fonts/truetype/aptos-fonts
+
 sudo mv -v ~/Downloads/Aptos/Apto*.ttf /usr/local/share/fonts/truetype/aptos-fonts
 sudo fc-cache -fv
 
