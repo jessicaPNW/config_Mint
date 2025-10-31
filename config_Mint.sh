@@ -23,7 +23,7 @@ dconf write /org/cinnamon/settings-daemon/plugins/power/lid-close-battery-action
 # Change Xed Text Editor from default font size to Monospace 21 pt.
 dconf write /org/x/editor/preferences/editor/editor-font "'monospace 21'"
 dconf write /org/x/editor/preferences/editor/use-default-font "false"
-logger -t Cinn-dconf "Cinnamon dconf changes done"
+logger -t config_Mint_Cinn-dconf "Cinnamon dconf changes done"
 
 # Create a folder to save documentation about computer.
 mkdir ~/Desktop/$(hostname)
@@ -79,7 +79,7 @@ done
 }
 
 wifi_file
-logger -t log-wifi_file "Wifi 2GHz done"
+logger -t config_Mint_wifi_file "Wifi 2GHz done"
 
 function ping_internet {
 #  Was ping successful? 
@@ -105,7 +105,7 @@ done
 }
 
 ping_internet
-logger -t log-ping "Ping internet done"
+logger -t config_Mint_ping "Ping internet done"
 
 # Before installing or updating any packages, it is important to update the package index. The package index contains information about the available packages in the repositories. https://linuxvox.com/blog/linux-mint-package-manager/. https://linuxize.com/post/how-to-use-apt-command/. 
 # I had to duplicate the apt commands a few times. Mint seems to want mint-upgrade-info and mintupdate, updated first, and then can proceed normally.
@@ -113,14 +113,14 @@ logger -t log-ping "Ping internet done"
 
 sudo apt update
 # TODO: Not prompt for password. Maybe run script as sudo?
-logger -t log-apt-update "apt update done."
+logger -t config_Mint_apt-update "apt update done."
 
 sudo dpkg --configure -a
-logger -t log-dpkg-config "dpkg --configure -a done."
+logger -t config_Mint_dpkg-config "dpkg --configure -a done."
 
 sudo apt install mint-upgrade-info
 sudo apt install mintupdate
-logger -t log-mint-upgrade "mint-upgrade done"
+logger -t config_Mint_mint-upgrade "mint-upgrade done"
 
 # Before installing or updating any packages, it is important to update the package index. The package index contains information about the available packages in the repositories. https://linuxvox.com/blog/linux-mint-package-manager/. https://linuxize.com/post/how-to-use-apt-command/
 sudo apt update
@@ -157,7 +157,7 @@ delete_Aptos
 
 # TESTING: LibreOffice Font Replacement table. https://easylinuxtipsproject.blogspot.com/p/libre-office.html#ID6.2
 # LibreOffice must be opened at least once.
-logger -t open_close_libre "Open and close LibreOffice."
+logger -t config_Mint_open_close_libre "Open and close LibreOffice."
 libreoffice &
 # Give LibreOffice time to open, remember older computers, first launch of LibreOffice.
 sleep 5s
@@ -188,7 +188,7 @@ function close_libreoffice {
 }
 close_libreoffice
 
-logger -t libre_fonts "libre font replacement table started"
+logger -t config_Mint_libre_fonts "libre font replacement table started"
 # TESTING: 
 function libre_replace_fonts {
 # Define the replacement table file path
@@ -217,7 +217,7 @@ sudo apt install -y fswebcam hw-probe hardinfo
 # Download Zoom. Install Zoom. https://linuxize.com/post/wget-command-examples/
 wget -P /home/user/Downloads/ https://zoom.us/client/6.5.7.3298/zoom_amd64.deb
 sudo apt install -y /home/user/Downloads/zoom_amd64.deb
-logger -t log-zoom-app "Zoom done."
+logger -t config_Mint_zoom-app "Zoom done."
 
 # Download and Import Google’s Signed Key.https://linuxiac.com/how-to-install-google-chrome-on-linux-mint/
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub > linux_signing_key.pub
@@ -230,7 +230,7 @@ sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/linux_signing_key.
 sudo apt update
 
 sudo apt install google-chrome-stable
-logger -t log-chrome-app "Chrome done."
+logger -t config_Mint_chrome-app "Chrome done."
 
 # Update installed packages.
 sudo apt update
@@ -303,7 +303,7 @@ desktop_icons
 # Test camera. 
 fswebcam -r 640x480 --jpeg 100 -D 3 -S 13 fswebcam.jpg
 xdg-open ~/fswebcam.jpg
-logger -t log-camera "Camera test done."
+logger -t config_Mint_camera "Camera test done."
 echo "fswebcam.jpg done. Press any key to continue..."
 read -n 1 -s
 rm ~/fswebcam.jpg
@@ -333,7 +333,7 @@ done
 }
 
 test_mic
-logger -t log-mic "Microphone test done."
+logger -t config_Mint_mic "Microphone test done."
 
 # Collect hardware for documentation.
 sudo inxi -FZxd > /media/user/SilverPur_1/$(hostname)_inxi.txt
@@ -364,7 +364,7 @@ sudo cp -v -r /usr/share/fonts/truetype/msttcorefonts /usr/local/share/fonts/mst
 sudo apt-get purge ttf-mscorefonts-installer
 sudo dpkg-reconfigure fontconfig
 
-logger -t log-ttf "ttf-mscorefonts-installer done."
+logger -t config_Mint_ttf_fonts "ttf-mscorefonts-installer done."
 
 function Sidebar_Bookmarks {
 # Define the path to the bookmarks file
@@ -378,8 +378,9 @@ sed -i '/Music/d; /Videos/d; /Pictures/d' "$BOOKMARKS_FILE"
 
 echo "Sidebar Bookmarks for Music, Videos, and Pictures have been deleted."
 }
-
+logger -t config_Mint_Sidebar_Bookmarks "Sidebar Bookmarks done."
 
 # Disable auto-arrange desktop icons. Requires restart.
 # TODO: Figure out how to handle restart; may need to move to end of script. 
 sed -i 's/nemo-icon-view-auto-layout=true/nemo-icon-view-auto-layout=false/g' ./.config/nemo/desktop-metadata
+logger -t config_Mint_disabled_auto-arrange "Auto-arrange disabled."
