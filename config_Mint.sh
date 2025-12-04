@@ -14,7 +14,7 @@
 dconf write /org/cinnamon/desktop/interface/clock-use-24h "false"
 
 # Change Start of Week from Sunday 7 to Monday 1. Just double quotes.
-dconf write /org/cinnamon/desktop/interface/first-date-of-week "1"
+dconf write /org/cinnamon/desktop/interface/first-day-of-week "1"
 
 # Change power settings. Double and single quotes.
 dconf write /org/cinnamon/settings-daemon/plugins/power/lid-close-ac-action "'nothing'"
